@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: nutrition-server
+  
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/nutrition_b?useUnicode=true&characterEncoding=utf8&&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: 123456
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.nutrition.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+# 文件上传目录（可自定义为绝对路径）。默认：~/nutrition-uploads
+upload:
+  base-dir: ${user.home}/nutrition-uploads
+
+# JWT配置
+jwt:
+  secret: nutrition-secret-key-minchi-2024
+  expiration: 604800000  # 7天
+
+ai-key: sk-1fbc3e3fb15f447b81d9b8b707e8859f
+
+logging:
+  level:
+    com.nutrition: DEBUG
